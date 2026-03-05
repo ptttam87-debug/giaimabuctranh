@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khám Phá Bức Tranh Bí Ẩn - Phương Trình Mũ & Logarit</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+
     <script>
       window.MathJax = {
         tex: {
@@ -33,11 +36,12 @@
             --text-color: #2C3E50;
             --correct-color: #66bb6a;
             --wrong-color: #ef5350;
+            --bg-color: #f5f7fa;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Baloo 2', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -50,10 +54,14 @@
         }
 
         header {
-            background-color: #ffffff;
-            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 95%;
+            max-width: 1200px;
+            margin-top: 15px;
+            border-radius: 25px;
             padding: 10px 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border: 4px solid white;
             text-align: center;
             z-index: 20;
             flex-shrink: 0;
@@ -62,105 +70,75 @@
         h1 {
             margin: 0 0 5px 0;
             color: var(--primary-color);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             text-transform: uppercase;
+            text-shadow: 1px 1px 0px #fff;
         }
 
         .player-info-bar {
             background-color: var(--accent-color);
             color: #5d4037;
-            padding: 5px 15px;
-            border-radius: 15px;
+            padding: 5px 20px;
+            border-radius: 20px;
             display: inline-block;
-            font-weight: bold;
-            font-size: 0.9rem;
+            font-weight: 800;
+            font-size: 1.1rem;
             margin-bottom: 5px;
+            box-shadow: 0 3px 0 #e5c100;
         }
 
         .controls {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 5px;
+            margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         .action-btn {
             background-color: white;
             color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            padding: 5px 15px;
-            border-radius: 20px;
+            border: 3px solid var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 25px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0 var(--primary-color);
         }
 
-        .action-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
+        .action-btn:hover { transform: translateY(-2px); background-color: #fff5f5; }
+        .action-btn:active { transform: translateY(4px); box-shadow: none; }
 
         /* CONTAINER CHÍNH */
         .container {
             display: flex;
             flex-direction: column-reverse; 
             width: 98%;
-            max-width: 1600px;
+            max-width: 1400px;
             flex: 1; 
-            gap: 20px;
+            gap: 25px;
             padding: 20px 10px;
             box-sizing: border-box;
         }
 
         @media (min-width: 768px) {
-            .container {
-                flex-direction: row; /* Ngang hàng */
-                align-items: flex-start;
-            }
-            
-            /* Chia đôi 50/50 */
-            .image-section, .quiz-section {
-                flex: 1; 
-                width: 50%; 
-                max-width: none; 
-            }
+            .container { flex-direction: row; align-items: flex-start; }
+            .image-section, .quiz-section { flex: 1; width: 50%; max-width: none; }
         }
 
         /* KHUNG HÌNH ẢNH (BÊN PHẢI) */
-        .image-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            position: relative;
-            width: 100%;
-        }
+        .image-section { display: flex; flex-direction: column; align-items: center; position: relative; width: 100%; }
 
         .image-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            background-color: #ddd;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            border: 5px solid white;
-            cursor: default;
-        }
-        
-        .image-container.error-mode {
-            border-color: #ff6b6b;
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+            background-color: #fff; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 6px solid white;
         }
 
-        .hidden-image {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; 
-            background-color: #333;
-            transition: opacity 0.3s;
-        }
+        .hidden-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; background-color: #333; }
 
         .error-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -168,232 +146,143 @@
             align-items: center; background: rgba(255,255,255,0.95);
             color: #d32f2f; z-index: 12; text-align: center;
         }
-        .error-overlay p { margin: 10px 0; }
         .error-overlay code { background: #eee; padding: 2px 5px; border-radius: 4px; font-weight: bold; color: #333; }
 
         .cover-grid {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            display: grid;
-            grid-template-columns: repeat(20, 1fr);
-            grid-template-rows: repeat(20, 1fr);
-            z-index: 10;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: grid; grid-template-columns: repeat(20, 1fr); grid-template-rows: repeat(20, 1fr); z-index: 10;
         }
 
         .cover-tile {
             background-color: var(--secondary-color);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: opacity 0.5s ease, transform 0.5s ease, border-radius 0.5s;
         }
-
-        .cover-tile.revealed {
-            opacity: 0;
-            transform: scale(0.1) rotate(90deg);
-            pointer-events: none;
-        }
+        .cover-tile.revealed { opacity: 0; transform: scale(0.2) rotate(180deg); border-radius: 50%; pointer-events: none; }
 
         .status-bar {
-            margin-top: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            color: #333;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            font-size: 1rem;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            width: 100%;
-            box-sizing: border-box;
-            max-width: 500px;
+            margin-top: 15px; background: rgba(255, 255, 255, 0.95); padding: 10px 25px;
+            border-radius: 25px; font-weight: 800; color: #333; box-shadow: 0 5px 0 rgba(0,0,0,0.05);
+            font-size: 1.2rem; text-align: center; display: flex; justify-content: space-between;
+            gap: 20px; width: 100%; box-sizing: border-box; max-width: 500px; border: 3px solid white;
         }
 
         /* KHUNG CÂU HỎI (BÊN TRÁI) */
         .quiz-section {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            min-height: 400px;
-            box-sizing: border-box;
+            background: white; padding: 30px; border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; flex-direction: column;
+            justify-content: center; min-height: 400px; box-sizing: border-box; border: 4px solid white;
         }
 
+        /* ĐÃ SỬA LỖI ĐÈ CHỮ Ở ĐÂY */
         .question-box {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 20px;
-            line-height: 1.5;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 6px solid var(--secondary-color);
+            font-size: 1.4rem; font-weight: 700; margin-bottom: 25px; line-height: 1.6;
+            background: #f8f9fa; 
+            padding: 25px 20px 25px 60px; /* Tăng lề trái để chừa chỗ cho dấu hỏi */
+            border-radius: 15px; border: 3px dashed var(--secondary-color);
+            position: relative; min-height: 60px;
+        }
+        .question-box::before {
+            content: "❓"; position: absolute; top: -15px; left: -20px; /* Kéo dấu hỏi ra ngoài viền */
+            font-size: 2.8rem; background: white; border-radius: 50%; padding: 5px;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1); border: 2px solid var(--secondary-color);
         }
 
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr; 
-            gap: 12px;
-            margin-bottom: 10px;
-        }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
 
         @media (max-width: 600px) {
-            .options-grid {
-                grid-template-columns: 1fr;
-            }
-            .question-box {
-                font-size: 1.1rem;
-                padding: 15px;
-            }
-            .container {
-                flex-direction: column-reverse; 
-            }
-            .image-section {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            .quiz-section {
-                width: 100%;
-            }
-            .status-bar {
-                font-size: 0.9rem;
-                padding: 8px 10px;
-            }
+            .options-grid { grid-template-columns: 1fr; }
+            .question-box { font-size: 1.2rem; padding: 20px 15px 20px 50px; }
+            .question-box::before { font-size: 2rem; left: -15px; top: -10px; }
+            .container { flex-direction: column-reverse; }
+            .image-section { width: 100%; margin-bottom: 20px; }
+            .quiz-section { width: 100%; padding: 20px; }
         }
 
         .option-btn {
-            background-color: #fff;
-            border: 2px solid #e0e0e0;
-            padding: 12px 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1.05rem;
-            text-align: left;
-            position: relative;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
+            background-color: #fff; border: 3px solid #e0e0e0; padding: 12px 15px;
+            border-radius: 15px; cursor: pointer; transition: all 0.2s ease;
+            font-size: 1.1rem; font-family: 'Baloo 2', sans-serif; font-weight: 700;
+            text-align: left; position: relative; color: var(--text-color);
+            display: flex; align-items: center; box-shadow: 0 4px 0 #e0e0e0;
         }
 
-        .option-btn:hover {
-            background-color: #f0f8ff;
-            border-color: var(--secondary-color);
-        }
+        .option-btn:hover { background-color: #f0f8ff; border-color: var(--secondary-color); transform: translateY(-2px); box-shadow: 0 6px 0 var(--secondary-color); }
+        .option-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--secondary-color); }
 
-        .option-btn.correct {
-            background-color: var(--correct-color);
-            color: white;
-            border-color: #43a047;
-        }
-
-        .option-btn.wrong {
-            background-color: var(--wrong-color);
-            color: white;
-            border-color: #e53935;
-            animation: shake 0.5s;
-        }
+        .option-btn.correct { background-color: var(--correct-color); color: white; border-color: #43a047; box-shadow: 0 4px 0 #2e7d32; }
+        .option-btn.wrong { background-color: var(--wrong-color); color: white; border-color: #e53935; box-shadow: 0 4px 0 #c62828; animation: shake 0.5s; }
 
         .next-btn {
-            margin: 15px auto 0;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 40px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: none;
-            box-shadow: 0 4px 0 #d32f2f;
-            flex-shrink: 0;
+            margin: 15px auto 0; background-color: var(--primary-color); color: white;
+            border: none; padding: 12px 40px; border-radius: 30px; font-size: 1.2rem;
+            font-family: 'Baloo 2', sans-serif; font-weight: 800; cursor: pointer;
+            display: none; box-shadow: 0 5px 0 #c62828; flex-shrink: 0; transition: 0.2s;
         }
         .next-btn:active { transform: translateY(4px); box-shadow: none; }
 
-        /* MODAL */
+        /* MODAL ĐĂNG NHẬP & BXH */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(44, 62, 80, 0.95); display: none;
-            justify-content: center; align-items: center; z-index: 1000;
+            background: rgba(44, 62, 80, 0.9); display: none;
+            justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(5px);
         }
         .modal-content {
-            background: white; padding: 30px; border-radius: 20px;
-            text-align: center; animation: popIn 0.5s; width: 90%; max-width: 450px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            background: white; padding: 30px; border-radius: 25px; text-align: center;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: 90%; max-width: 450px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3); border: 5px solid white;
         }
         .login-input {
-            width: 100%; padding: 12px; margin: 10px 0;
-            border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box;
+            width: 100%; padding: 15px; margin: 15px 0; font-family: 'Baloo 2', sans-serif; font-size: 1.1rem;
+            border: 3px solid #ddd; border-radius: 15px; box-sizing: border-box; text-align: center;
         }
         .login-btn {
-            width: 100%; padding: 12px; background: var(--primary-color);
-            color: white; border: none; border-radius: 10px; cursor: pointer;
-            font-weight: bold; margin-top: 10px;
+            width: 100%; padding: 15px; background: var(--primary-color); font-family: 'Baloo 2', sans-serif;
+            color: white; border: none; border-radius: 15px; cursor: pointer; font-size: 1.3rem;
+            font-weight: 800; margin-top: 10px; box-shadow: 0 5px 0 #c62828; transition: 0.2s;
         }
+        .login-btn:active { transform: translateY(4px); box-shadow: none; }
 
-        .congrats-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); display: none;
-            justify-content: center; align-items: center; z-index: 100;
-        }
-
-        /* Styles cho Bảng Xếp Hạng */
-        .leaderboard-list {
-            list-style: none; padding: 0; margin: 15px 0;
-            max-height: 250px; overflow-y: auto; text-align: left;
-            border: 1px solid #eee; border-radius: 10px;
-        }
-        .leaderboard-item {
-            display: grid; 
-            grid-template-columns: 40px 1fr 70px 70px;
-            align-items: center;
-            padding: 10px; 
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.9rem;
-        }
-        .leaderboard-header {
-            font-weight: bold; background: #f0f0f0; color: #555;
-        }
+        /* Bảng Xếp Hạng */
+        .leaderboard-list { list-style: none; padding: 0; margin: 15px 0; max-height: 300px; overflow-y: auto; text-align: left; border: 3px solid #eee; border-radius: 15px; }
+        .leaderboard-item { display: grid; grid-template-columns: 45px 1fr 70px 70px; align-items: center; padding: 12px; border-bottom: 2px solid #f0f0f0; font-size: 1rem; }
+        .leaderboard-header { font-weight: 800; background: var(--accent-color); color: #555; position: sticky; top: 0; z-index: 2; border-radius: 10px 10px 0 0;}
         .leaderboard-item:last-child { border-bottom: none; }
-        .leaderboard-item:nth-child(even) { background-color: #f9f9f9; }
+        .lb-rank { font-weight: 800; color: #777; text-align: center; }
+        .lb-name { font-weight: 700; color: var(--text-color); }
+        .lb-score { font-weight: 800; color: var(--primary-color); text-align: center; }
+        .lb-time { font-family: monospace; font-weight:bold; color: #555; text-align: right; }
         
-        .lb-rank { font-weight: bold; color: #777; text-align: center; }
-        .lb-info { display: flex; flex-direction: column; }
-        .lb-name { font-weight: 600; color: var(--text-color); }
-        .lb-score { font-weight: bold; color: var(--primary-color); text-align: center; }
-        .lb-time { font-family: monospace; color: #555; text-align: right; }
-        
-        /* Top 3 colors */
-        .lb-item-1 .lb-rank { color: #FFD700; font-size: 1.2rem; } 
-        .lb-item-2 .lb-rank { color: #C0C0C0; font-size: 1.1rem; } 
-        .lb-item-3 .lb-rank { color: #CD7F32; font-size: 1.1rem; } 
+        .lb-item-1 .lb-rank { color: #FFD700; font-size: 1.3rem; } 
+        .lb-item-2 .lb-rank { color: #C0C0C0; font-size: 1.2rem; } 
+        .lb-item-3 .lb-rank { color: #CD7F32; font-size: 1.2rem; } 
 
-        @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-5px); } 50% { transform: translateX(5px); } }
-        .confetti { position: absolute; width: 8px; height: 8px; background: #f00; animation: fall linear forwards; }
+        .confetti { position: absolute; width: 10px; height: 10px; background: #f00; animation: fall linear forwards; border-radius: 50%; z-index: 9999; }
         @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
     </style>
 </head>
 <body>
 
+<audio id="bgMusic" loop>
+    <source src="buctranh.mp3" type="audio/mpeg">
+</audio>
+
 <header>
     <h1>🎮 Giải Mã Bức Tranh 🎮</h1>
     <div id="playerInfoBar" class="player-info-bar" style="display:none;">
-        👥 <span id="displayPlayerName">...</span>
+        🌟 Đội: <span id="displayPlayerName">...</span>
     </div>
     <div class="controls">
+        <button id="musicToggleBtn" class="action-btn" onclick="toggleMusic()">🔇 Nhạc: Tắt</button>
         <button class="action-btn" onclick="showLeaderboard()">🏆 BXH</button>
         <button class="action-btn" onclick="resetGame()">🔄 Chơi Lại</button>
     </div>
 </header>
 
 <div class="container">
-    
-    <div class="quiz-section">
+    <div class="quiz-section" id="quiz-container-box">
         <div id="quiz-content">
             <div class="question-box" id="question-text">Đang tải...</div>
             <div class="options-grid" id="options-container"></div>
@@ -414,36 +303,27 @@
             <div class="cover-grid" id="coverGrid"></div>
         </div>
         <div class="status-bar">
-            <span>Câu: <span id="current-q">1</span>/<span id="total-q">10</span></span>
-            <span>⏱️ <span id="timer">00:00</span></span>
-            <span>Điểm: <span id="score">0</span></span>
+            <span>🎯 Câu: <span id="current-q" style="color:var(--primary-color)">1</span>/<span id="total-q">10</span></span>
+            <span>⏱️ <span id="timer" style="color:var(--secondary-color)">00:00</span></span>
+            <span>⭐ Điểm: <span id="score" style="color:var(--primary-color)">0</span></span>
         </div>
     </div>
-
 </div>
 
 <div class="modal" id="loginModal" style="display: flex;">
     <div class="modal-content">
-        <h2 style="color: var(--primary-color);">👋 Chào bạn!</h2>
+        <h2 style="color: var(--primary-color); font-size: 2rem; margin-top:0;">👋 Chào bạn!</h2>
+        <p style="font-weight: 600; color: #555;">Sẵn sàng giải mã bức tranh chưa?</p>
         <input type="text" id="playerName" class="login-input" placeholder="Nhập tên Đội/Nhóm của bạn" autocomplete="off">
-        <button class="login-btn" onclick="submitPlayerInfo()">Vào Game 🚀</button>
+        <button class="login-btn" onclick="submitPlayerInfo()">VÀO GAME 🚀</button>
     </div>
 </div>
 
-<div class="congrats-modal" id="congratsModal">
-    <div class="modal-content" style="background: white;">
-        <div class="congrats-content"></div>
-    </div>
-</div>
-
-<div class="modal" id="leaderboardModal" style="display: none; z-index: 1100;">
-    <div class="modal-content" style="background: white;">
-        <h2 style="color: var(--primary-color);">🏆 Bảng Xếp Hạng</h2>
-        <div id="leaderboardContent">
-            </div>
-        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
-            <button class="action-btn" onclick="closeLeaderboard()">Đóng</button>
-        </div>
+<div class="modal" id="leaderboardModal">
+    <div class="modal-content">
+        <h2 style="color: var(--primary-color); margin-top: 0;">🏆 Bảng Xếp Hạng</h2>
+        <div id="leaderboardContent"></div>
+        <button class="action-btn" style="margin-top: 15px;" onclick="closeLeaderboard()">Đóng Lại ❌</button>
     </div>
 </div>
 
@@ -452,12 +332,28 @@
 
     let playerName = "";
     let currentQuestionIndex = 0, score = 0, canClick = true;
-    
-    let startTime;
-    let timerInterval;
-    let finalTimeSeconds = 0;
+    let startTime, timerInterval, finalTimeSeconds = 0;
+    let isMusicPlaying = false;
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.5;
 
     const LB_KEY = 'math_quiz_leaderboard_v2'; 
+
+    function toggleMusic() {
+        const btn = document.getElementById('musicToggleBtn');
+        if (isMusicPlaying) {
+            bgMusic.pause();
+            btn.innerHTML = '🔇 Nhạc: Tắt';
+            btn.style.borderColor = 'var(--primary-color)';
+            btn.style.color = 'var(--primary-color)';
+        } else {
+            bgMusic.play().catch(e => console.log("Trình duyệt chặn autoplay"));
+            btn.innerHTML = '🎵 Nhạc: Bật';
+            btn.style.borderColor = 'var(--correct-color)';
+            btn.style.color = 'var(--correct-color)';
+        }
+        isMusicPlaying = !isMusicPlaying;
+    }
 
     function submitPlayerInfo() {
         const n = document.getElementById('playerName').value.trim();
@@ -466,6 +362,8 @@
         document.getElementById('displayPlayerName').innerText = playerName;
         document.getElementById('playerInfoBar').style.display = 'inline-block';
         document.getElementById('loginModal').style.display = 'none';
+        
+        if (!isMusicPlaying) toggleMusic();
         
         startTimer(); 
         playSound('correct');
@@ -516,11 +414,8 @@
         
         clearInterval(timerInterval);
         document.getElementById('timer').innerText = "00:00";
-
         document.getElementById('score').innerText = score;
-        document.getElementById('congratsModal').style.display = 'none';
         
-        document.getElementById('quiz-content').style.display = 'block';
         document.getElementById('quiz-content').innerHTML = `
             <div class="question-box" id="question-text">Đang tải...</div>
             <div class="options-grid" id="options-container"></div>
@@ -570,7 +465,19 @@
 
     function loadQuestion() {
         canClick = true;
-        document.getElementById('next-btn').style.display = 'none';
+        const nextBtn = document.getElementById('next-btn');
+        nextBtn.style.display = 'none';
+        
+        if (currentQuestionIndex === questions.length - 1) {
+            nextBtn.innerHTML = 'Kết Thúc & Xem Điểm 🏁';
+            nextBtn.style.backgroundColor = '#FFB300'; 
+            nextBtn.style.boxShadow = '0 5px 0 #FF8F00';
+        } else {
+            nextBtn.innerHTML = 'Câu Tiếp Theo ➜';
+            nextBtn.style.backgroundColor = 'var(--primary-color)';
+            nextBtn.style.boxShadow = '0 5px 0 #c62828';
+        }
+
         document.getElementById('current-q').innerText = currentQuestionIndex + 1;
         const qData = questions[currentQuestionIndex];
         const qText = document.getElementById('question-text');
@@ -581,7 +488,7 @@
             qData.options.forEach((opt, idx) => {
                 let btn = document.createElement('div');
                 btn.className = 'option-btn';
-                btn.innerHTML = opt;
+                btn.innerHTML = `<span style="margin-right:8px; font-size:1.2rem;">⚫</span> ` + opt;
                 btn.onclick = () => checkAnswer(idx, btn);
                 optContainer.appendChild(btn);
             });
@@ -602,36 +509,35 @@
             btn.classList.add('wrong'); playSound('wrong');
             opts[qData.correct].classList.add('correct');
         }
-        document.getElementById('next-btn').style.display = 'block';
+        
+        if (currentQuestionIndex === questions.length - 1) {
+            // Câu cuối: đợi 1.2s rồi chạy hàm kết thúc
+            setTimeout(finishGame, 1200);
+        } else {
+            document.getElementById('next-btn').style.display = 'block';
+        }
     }
 
     function revealRandomPixels() {
         const unrevealed = Array.from(document.querySelectorAll('.cover-tile:not(.revealed)'));
-        
-        // Tính toán số lượng ô mở cố định cho mỗi câu đúng (Tổng số ô / Tổng số câu hỏi)
         const totalTiles = 400;
         const count = Math.ceil(totalTiles / questions.length); 
         const actualCount = Math.min(count, unrevealed.length);
 
         if (actualCount <= 0) return;
 
-        // Xáo trộn ngẫu nhiên các mảnh ghép chưa mở
         for (let i = unrevealed.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [unrevealed[i], unrevealed[j]] = [unrevealed[j], unrevealed[i]];
         }
         
-        // Mở đúng số lượng mảnh ghép
         unrevealed.slice(0, actualCount).forEach((t, i) => setTimeout(() => t.classList.add('revealed'), i * 5));
     }
 
     function nextQuestion() {
         currentQuestionIndex++;
         if (currentQuestionIndex < questions.length) loadQuestion();
-        else finishGame();
     }
-
-    // --- LEADERBOARD & GOOGLE SHEETS LOGIC ---
 
     function getLocalLeaderboard() {
         const data = localStorage.getItem(LB_KEY);
@@ -639,43 +545,33 @@
     }
 
     function saveScore(name, score, timeSeconds) {
-        // 1. Lưu dự phòng trên máy (Local Storage)
         let lb = getLocalLeaderboard();
         lb.push({ name, score, timeSeconds });
         localStorage.setItem(LB_KEY, JSON.stringify(lb));
 
-        // 2. Gửi lên Google Sheets
         if (SCRIPT_URL) {
             const postData = { name, score, timeSeconds };
             fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
+                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(postData)
-            }).then(() => console.log('Đã gửi điểm lên hệ thống'))
-              .catch(e => console.error('Lỗi khi lưu lên Sheet:', e));
+            }).catch(e => console.error('Lỗi khi lưu lên Sheet:', e));
         }
     }
 
-    function renderLeaderboardHTML(lb) {
-        const content = document.getElementById('leaderboardContent');
+    function renderLeaderboardHTML(lb, containerId) {
+        const content = document.getElementById(containerId);
         if (!lb || lb.length === 0) {
             content.innerHTML = "<p style='text-align:center; padding:20px;'>Chưa có dữ liệu. Hãy là đội đầu tiên!</p>";
             return;
         }
-
-        lb.sort((a, b) => {
-            if (b.score !== a.score) return b.score - a.score;
-            return a.timeSeconds - b.timeSeconds;
-        });
-
+        lb.sort((a, b) => { if (b.score !== a.score) return b.score - a.score; return a.timeSeconds - b.timeSeconds; });
         const topLb = lb.slice(0, 50);
 
         let html = `
             <div class="leaderboard-list">
                 <div class="leaderboard-item leaderboard-header">
                     <span class="lb-rank">#</span>
-                    <span class="lb-info" style="text-align:left; margin-left:10px;">Đội/Nhóm</span>
+                    <span class="lb-info" style="text-align:left; margin-left:10px;">Đội</span>
                     <span class="lb-score">Điểm</span>
                     <span class="lb-time">Thời gian</span>
                 </div>`;
@@ -683,13 +579,10 @@
             html += `
                 <div class="leaderboard-item lb-item-${index + 1}">
                     <span class="lb-rank">${index + 1}</span>
-                    <div class="lb-info">
-                        <div class="lb-name">${item.name}</div>
-                    </div>
+                    <div class="lb-info"><div class="lb-name">${item.name}</div></div>
                     <span class="lb-score">${item.score}</span>
                     <span class="lb-time">${formatTime(item.timeSeconds)}</span>
-                </div>
-            `;
+                </div>`;
         });
         html += '</div>';
         content.innerHTML = html;
@@ -698,56 +591,91 @@
     async function showLeaderboard() {
         document.getElementById('leaderboardModal').style.display = 'flex';
         const content = document.getElementById('leaderboardContent');
-        
         content.innerHTML = "<p style='text-align:center; padding:20px;'>⏳ Đang tải Bảng xếp hạng...</p>";
-
         try {
             const response = await fetch(SCRIPT_URL);
             const sheetData = await response.json();
-            renderLeaderboardHTML(sheetData);
+            renderLeaderboardHTML(sheetData, 'leaderboardContent');
         } catch (error) {
-            console.error("Không thể lấy dữ liệu từ Sheets:", error);
-            content.innerHTML = "<p style='text-align:center; padding:10px; color:red; font-size:0.9rem;'>Mất kết nối máy chủ. Đang hiển thị điểm offline:</p>";
-            setTimeout(() => renderLeaderboardHTML(getLocalLeaderboard()), 1500);
+            setTimeout(() => renderLeaderboardHTML(getLocalLeaderboard(), 'leaderboardContent'), 1000);
         }
     }
 
-    function closeLeaderboard() {
-        document.getElementById('leaderboardModal').style.display = 'none';
-    }
+    function closeLeaderboard() { document.getElementById('leaderboardModal').style.display = 'none'; }
 
+    // --- HIỂN THỊ KẾT QUẢ TRỰC TIẾP TRÊN KHUNG TRÁI ---
     function finishGame() {
         finalTimeSeconds = stopTimer(); 
-        const max = questions.length * 10;
-        const perfect = score === max;
-        const content = document.querySelector('.congrats-content');
+        const maxScore = questions.length * 10;
+        const correctAnswers = score / 10;
+        const perfect = score === maxScore;
         
         saveScore(playerName, score, finalTimeSeconds);
-
-        document.getElementById('quiz-content').innerHTML = `<div style="text-align: center;"><h2>Kết thúc!</h2><p>Điểm: ${score}/${max}</p></div>`;
         document.getElementById('next-btn').style.display = 'none';
-        
-        let title = perfect ? "🎉 CHÚC MỪNG! 🎉" : "TIẾC QUÁ! 😅";
-        let msg = perfect ? "Đội của bạn đã xuất sắc mở khóa toàn bộ bức tranh!" : "Đội bạn chưa mở hết được bức tranh rồi.";
-        let color = perfect ? "var(--primary-color)" : "var(--wrong-color)";
 
         if (perfect) {
             document.querySelectorAll('.cover-tile').forEach(t => t.classList.add('revealed'));
             startConfetti();
         }
 
-        content.innerHTML = `
-            <h2 style="color:${color}">${title}</h2>
-            <p><b>${playerName}</b></p>
-            <p>Điểm số: <b style="font-size:1.2rem; color:var(--primary-color)">${score}</b></p>
-            <p>Thời gian: <b>${formatTime(finalTimeSeconds)}</b></p>
-            <p>${msg}</p>
-            <div style="margin-top:15px; display:flex; justify-content:center; gap:10px;">
-                <button class="action-btn" onclick="showLeaderboard()">🏆 Xem BXH</button>
-                <button class="action-btn" onclick="resetGame()">🔄 Chơi Lại</button>
+        // Nội dung lời chúc và sticker
+        let title = perfect ? "XUẤT SẮC! 🎉" : "KẾT THÚC! 🏁";
+        let message = perfect 
+            ? "Chúc mừng bạn đã mở được toàn bộ bức tranh! 🖼️✨" 
+            : "Rất tiếc! Bạn chưa mở hết bức tranh. Hãy thử lại nhé! 🧩💪";
+        let titleColor = perfect ? "var(--correct-color)" : "var(--primary-color)";
+        let mainSticker = perfect ? "🏆" : "🎯";
+
+        // Ghi đè thẳng vào vùng câu hỏi bên trái
+        const quizContent = document.getElementById('quiz-content');
+        quizContent.innerHTML = `
+            <div style="text-align: center; animation: popIn 0.5s;">
+                <h2 style="font-size: 2.2rem; color: ${titleColor}; margin: 0 0 10px 0;">${title}</h2>
+                <div style="font-size: 4rem; margin-bottom: 10px;">${mainSticker}</div>
+                
+                <div style="background: #f8f9fa; border: 3px dashed var(--secondary-color); border-radius: 15px; padding: 15px; text-align: left; display: inline-block; width: 90%; margin-bottom: 15px;">
+                    <p style="font-size: 1.2rem; margin: 5px 0;">👤 Đội: <b style="color:var(--primary-color)">${playerName}</b></p>
+                    <p style="font-size: 1.2rem; margin: 5px 0;">✅ Số câu đúng: <b style="color:var(--correct-color)">${correctAnswers}/${questions.length}</b></p>
+                    <p style="font-size: 1.2rem; margin: 5px 0;">⭐ Điểm số: <b style="font-size:1.6rem; color:#f39c12;">${score}</b></p>
+                    <p style="font-size: 1.2rem; margin: 5px 0;">⏱️ Thời gian: <b>${formatTime(finalTimeSeconds)}</b></p>
+                    
+                    <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+                    <p id="inlineRankDisplay" style="text-align: center; font-size: 1.3rem; font-weight: 800; color: #d32f2f; margin: 0;">🏅 Đang tính thứ hạng... ⏳</p>
+                </div>
+                
+                <p style="font-size: 1.2rem; font-weight: bold; color: #555;">${message}</p>
+                
+                <div style="margin-top: 15px;">
+                    <button class="action-btn" onclick="showLeaderboard()">🏆 Bảng Xếp Hạng</button>
+                    <button class="action-btn" onclick="resetGame()">🔄 Chơi Lại Từ Đầu</button>
+                </div>
             </div>
         `;
-        setTimeout(() => document.getElementById('congratsModal').style.display = 'flex', 1000);
+
+        // Tải vị trí xếp hạng ngầm
+        setTimeout(async () => {
+            try {
+                const response = await fetch(SCRIPT_URL);
+                const sheetData = await response.json();
+                
+                sheetData.push({ name: playerName, score: score, timeSeconds: finalTimeSeconds });
+                sheetData.sort((a, b) => {
+                    if (b.score !== a.score) return b.score - a.score;
+                    return a.timeSeconds - b.timeSeconds;
+                });
+                
+                let currentRank = sheetData.findIndex(item => item.name === playerName && item.score === score && item.timeSeconds === finalTimeSeconds) + 1;
+                document.getElementById('inlineRankDisplay').innerHTML = `🏅 Thứ hạng của đội: TOP ${currentRank} 🏅`;
+            } catch (e) {
+                let lb = getLocalLeaderboard();
+                lb.sort((a, b) => {
+                    if (b.score !== a.score) return b.score - a.score;
+                    return a.timeSeconds - b.timeSeconds;
+                });
+                let currentRank = lb.findIndex(item => item.name === playerName && item.score === score && item.timeSeconds === finalTimeSeconds) + 1;
+                document.getElementById('inlineRankDisplay').innerHTML = `🏅 Thứ hạng của đội: TOP ${currentRank} 🏅 (Offline)`;
+            }
+        }, 500);
     }
 
     function startConfetti() {
