@@ -9,21 +9,9 @@
 
     <script>
       window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$', '$$'], ['\\[', '\\]']],
-          processEscapes: true,
-        },
-        options: {
-          renderActions: {
-            addMenu: []
-          }
-        },
-        startup: {
-            ready: () => {
-                MathJax.startup.defaultReady();
-            }
-        }
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+        options: { renderActions: { addMenu: [] } },
+        startup: { ready: () => { MathJax.startup.defaultReady(); } }
       };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -36,92 +24,46 @@
             --text-color: #2C3E50;
             --correct-color: #66bb6a;
             --wrong-color: #ef5350;
-            --bg-color: #f5f7fa;
         }
 
         body {
-            font-family: 'Baloo 2', 'Segoe UI', sans-serif;
+            font-family: 'Baloo 2', sans-serif;
             background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-color);
-            overflow-y: auto; 
-            overflow-x: hidden; 
+            margin: 0; padding: 0; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--text-color); overflow-y: auto; overflow-x: hidden; 
         }
 
         header {
             background-color: rgba(255, 255, 255, 0.95);
-            width: 95%;
-            max-width: 1200px;
-            margin-top: 15px;
-            border-radius: 25px;
-            padding: 10px 15px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            border: 4px solid white;
-            text-align: center;
-            z-index: 20;
-            flex-shrink: 0;
+            width: 95%; max-width: 1200px; margin-top: 15px;
+            border-radius: 25px; padding: 10px 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1); border: 4px solid white;
+            text-align: center; z-index: 20; flex-shrink: 0;
         }
 
-        h1 {
-            margin: 0 0 5px 0;
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 0px #fff;
-        }
+        h1 { margin: 0 0 5px 0; color: var(--primary-color); font-size: 1.8rem; text-transform: uppercase; text-shadow: 1px 1px 0px #fff; }
 
         .player-info-bar {
-            background-color: var(--accent-color);
-            color: #5d4037;
-            padding: 5px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            font-weight: 800;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            box-shadow: 0 3px 0 #e5c100;
+            background-color: var(--accent-color); color: #5d4037;
+            padding: 5px 20px; border-radius: 20px; display: inline-block;
+            font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; box-shadow: 0 3px 0 #e5c100;
         }
 
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
+        .controls { display: flex; justify-content: center; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
 
         .action-btn {
-            background-color: white;
-            color: var(--primary-color);
-            border: 3px solid var(--primary-color);
-            padding: 8px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Baloo 2', sans-serif;
-            font-weight: 800;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 0 var(--primary-color);
+            background-color: white; color: var(--primary-color);
+            border: 3px solid var(--primary-color); padding: 8px 20px;
+            border-radius: 25px; cursor: pointer; font-family: 'Baloo 2', sans-serif;
+            font-weight: 800; font-size: 1rem; transition: all 0.2s ease; box-shadow: 0 4px 0 var(--primary-color);
         }
-
         .action-btn:hover { transform: translateY(-2px); background-color: #fff5f5; }
         .action-btn:active { transform: translateY(4px); box-shadow: none; }
 
-        /* CONTAINER CHÍNH */
         .container {
-            display: flex;
-            flex-direction: column-reverse; 
-            width: 98%;
-            max-width: 1400px;
-            flex: 1; 
-            gap: 25px;
-            padding: 20px 10px;
-            box-sizing: border-box;
+            display: flex; flex-direction: column-reverse; width: 98%; max-width: 1400px;
+            flex: 1; gap: 25px; padding: 20px 10px; box-sizing: border-box;
         }
 
         @media (min-width: 768px) {
@@ -129,7 +71,6 @@
             .image-section, .quiz-section { flex: 1; width: 50%; max-width: none; }
         }
 
-        /* KHUNG HÌNH ẢNH (BÊN PHẢI) */
         .image-section { display: flex; flex-direction: column; align-items: center; position: relative; width: 100%; }
 
         .image-container {
@@ -167,23 +108,20 @@
             gap: 20px; width: 100%; box-sizing: border-box; max-width: 500px; border: 3px solid white;
         }
 
-        /* KHUNG CÂU HỎI (BÊN TRÁI) */
         .quiz-section {
             background: white; padding: 30px; border-radius: 25px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; flex-direction: column;
             justify-content: center; min-height: 400px; box-sizing: border-box; border: 4px solid white;
         }
 
-        /* ĐÃ SỬA LỖI ĐÈ CHỮ Ở ĐÂY */
         .question-box {
             font-size: 1.4rem; font-weight: 700; margin-bottom: 25px; line-height: 1.6;
-            background: #f8f9fa; 
-            padding: 25px 20px 25px 60px; /* Tăng lề trái để chừa chỗ cho dấu hỏi */
+            background: #f8f9fa; padding: 25px 20px 25px 60px;
             border-radius: 15px; border: 3px dashed var(--secondary-color);
             position: relative; min-height: 60px;
         }
         .question-box::before {
-            content: "❓"; position: absolute; top: -15px; left: -20px; /* Kéo dấu hỏi ra ngoài viền */
+            content: "❓"; position: absolute; top: -15px; left: -20px;
             font-size: 2.8rem; background: white; border-radius: 50%; padding: 5px;
             box-shadow: 0 4px 0 rgba(0,0,0,0.1); border: 2px solid var(--secondary-color);
         }
@@ -206,10 +144,8 @@
             text-align: left; position: relative; color: var(--text-color);
             display: flex; align-items: center; box-shadow: 0 4px 0 #e0e0e0;
         }
-
         .option-btn:hover { background-color: #f0f8ff; border-color: var(--secondary-color); transform: translateY(-2px); box-shadow: 0 6px 0 var(--secondary-color); }
         .option-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--secondary-color); }
-
         .option-btn.correct { background-color: var(--correct-color); color: white; border-color: #43a047; box-shadow: 0 4px 0 #2e7d32; }
         .option-btn.wrong { background-color: var(--wrong-color); color: white; border-color: #e53935; box-shadow: 0 4px 0 #c62828; animation: shake 0.5s; }
 
@@ -221,7 +157,6 @@
         }
         .next-btn:active { transform: translateY(4px); box-shadow: none; }
 
-        /* MODAL ĐĂNG NHẬP & BXH */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(44, 62, 80, 0.9); display: none;
@@ -243,7 +178,6 @@
         }
         .login-btn:active { transform: translateY(4px); box-shadow: none; }
 
-        /* Bảng Xếp Hạng */
         .leaderboard-list { list-style: none; padding: 0; margin: 15px 0; max-height: 300px; overflow-y: auto; text-align: left; border: 3px solid #eee; border-radius: 15px; }
         .leaderboard-item { display: grid; grid-template-columns: 45px 1fr 70px 70px; align-items: center; padding: 12px; border-bottom: 2px solid #f0f0f0; font-size: 1rem; }
         .leaderboard-header { font-weight: 800; background: var(--accent-color); color: #555; position: sticky; top: 0; z-index: 2; border-radius: 10px 10px 0 0;}
@@ -293,13 +227,11 @@
     <div class="image-section">
         <div class="image-container" id="imgContainer">
             <img src="hinh_game.jpg" alt="Bức tranh bí ẩn" class="hidden-image" id="gameImage" onerror="handleImageError(this)">
-            
             <div class="error-overlay" id="errorOverlay">
                 <p style="font-size: 2rem;">🖼️❓</p>
                 <p><b>Không tìm thấy ảnh!</b></p>
                 <p>Cần file: <code>hinh_game.jpg</code></p>
             </div>
-
             <div class="cover-grid" id="coverGrid"></div>
         </div>
         <div class="status-bar">
@@ -327,30 +259,58 @@
     </div>
 </div>
 
-<script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiR-Z0EtqmHLQdVizrn6hPNt_wMh9Sp_znd4ciJY4eQociAUHixISDRt6heL_r3XMX/exec';
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
+<script>
+    // 1. CẤU HÌNH FIREBASE
+    const firebaseConfig = {
+        apiKey: "AIzaSyCFCslfgIwHBv8p5SSyVjIS8cNqQUD8Eao",
+        authDomain: "giaimabuctranh.firebaseapp.com",
+        databaseURL: "https://giaimabuctranh-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "giaimabuctranh",
+        storageBucket: "giaimabuctranh.firebasestorage.app",
+        messagingSenderId: "826289132746",
+        appId: "1:826289132746:web:b4fd5a77f672a794e3d033",
+        measurementId: "G-T75PVFMXCS"
+    };
+
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // 2. BIẾN TRÒ CHƠI
     let playerName = "";
     let currentQuestionIndex = 0, score = 0, canClick = true;
     let startTime, timerInterval, finalTimeSeconds = 0;
     let isMusicPlaying = false;
+    
     const bgMusic = document.getElementById('bgMusic');
     bgMusic.volume = 0.5;
 
-    const LB_KEY = 'math_quiz_leaderboard_v2'; 
+    const questions = [
+        { id: 1, text: "Nghiệm của phương trình $2^{\\frac{1}{x}}=3$ là:", options: ["A. $x = \\log_{2}3$", "B. $x = -\\log_{3}2$", "C. $x = -\\log_{2}3$", "D. $x = \\log_{3}2$"], correct: 3 },
+        { id: 2, text: "Tìm tổng tất cả các nghiệm của phương trình $3^{2x+8}-4.3^{x+5}+27=0$.", options: ["A. $-5$", "B. $5$", "C. $\\frac{4}{27}$", "D. $-\\frac{4}{27}$"], correct: 0 },
+        { id: 4, text: "Tìm tập nghiệm $S$ của phương trình $\\log_{6}[x(5-x)]=1$.", options: ["A. $S=\\{1; -6\\}$", "B. $S=\\{-1; 6\\}$", "C. $S=\\{2; 3\\}$", "D. $S=\\{4; 6\\}$"], correct: 2 },
+        { id: 5, text: "Gọi $T$ là tổng tất cả các nghiệm của phương trình $3^{x^{2}} \\cdot 2^{x}=1$. Mệnh đề nào sau đây là đúng?", options: ["A. $T < -\\frac{1}{2}$", "B. $-\\frac{1}{2} < T < 1$", "C. $T = 1$", "D. $T > 1$"], correct: 0 },
+        { id: 7, text: "Nghiệm của phương trình $3^{x-1} = 27$ là:", options: ["A. $x=3$", "B. $x=4$", "C. $x=2$", "D. $x=1$"], correct: 1 },
+        { id: 8, text: "Nghiệm của phương trình $\\log_2(x^2 - 1) = 3$ là:", options: ["A. $x = \\pm 3$", "B. $x = \\pm \\sqrt{7}$", "C. $x = 3$", "D. $x = \\sqrt{7}$"], correct: 0 },
+        { id: 11, text: "Nghiệm của phương trình $9^x - 4\\cdot 3^x + 3 = 0$ là:", options: ["A. $x=0, x=1$", "B. $x=1, x=3$", "C. $x=0, x=-1$", "D. $x=1, x=-3$"], correct: 0 },
+        { id: 15, text: "Nghiệm của phương trình $2^{x} \\cdot 5^{x} = 100$ là:", options: ["A. $x=1$", "B. $x=2$", "C. $x=10$", "D. $x=\\log_{10} 2$"], correct: 1 },
+        { id: 16, text: "Phương trình $\\ln x + \\ln(x+1) = 0$ có bao nhiêu nghiệm?", options: ["A. 0", "B. 1", "C. 2", "D. 3"], correct: 1 },
+        { id: 17, text: "Nghiệm của phương trình $\\log_3(x-2) = 2$ là:", options: ["A. $x=11$", "B. $x=8$", "C. $x=7$", "D. $x=5$"], correct: 0 }
+    ];
 
+    // 3. CÁC HÀM XỬ LÝ
     function toggleMusic() {
         const btn = document.getElementById('musicToggleBtn');
         if (isMusicPlaying) {
-            bgMusic.pause();
-            btn.innerHTML = '🔇 Nhạc: Tắt';
-            btn.style.borderColor = 'var(--primary-color)';
-            btn.style.color = 'var(--primary-color)';
+            bgMusic.pause(); btn.innerHTML = '🔇 Nhạc: Tắt';
+            btn.style.borderColor = 'var(--primary-color)'; btn.style.color = 'var(--primary-color)';
         } else {
             bgMusic.play().catch(e => console.log("Trình duyệt chặn autoplay"));
             btn.innerHTML = '🎵 Nhạc: Bật';
-            btn.style.borderColor = 'var(--correct-color)';
-            btn.style.color = 'var(--correct-color)';
+            btn.style.borderColor = 'var(--correct-color)'; btn.style.color = 'var(--correct-color)';
         }
         isMusicPlaying = !isMusicPlaying;
     }
@@ -362,14 +322,11 @@
         document.getElementById('displayPlayerName').innerText = playerName;
         document.getElementById('playerInfoBar').style.display = 'inline-block';
         document.getElementById('loginModal').style.display = 'none';
-        
         if (!isMusicPlaying) toggleMusic();
-        
-        startTimer(); 
-        playSound('correct');
+        startTimer(); playSound('correct');
     }
 
-    function handleImageError() {
+    function handleImageError(img) {
         document.getElementById('errorOverlay').style.display = 'flex';
         document.getElementById('imgContainer').classList.add('error-mode');
     }
@@ -396,37 +353,20 @@
         return `${m}:${s}`;
     }
 
-    const questions = [
-        { id: 1, text: "Nghiệm của phương trình $2^{\\frac{1}{x}}=3$ là:", options: ["A. $x = \\log_{2}3$", "B. $x = -\\log_{3}2$", "C. $x = -\\log_{2}3$", "D. $x = \\log_{3}2$"], correct: 3 },
-        { id: 2, text: "Tìm tổng tất cả các nghiệm của phương trình $3^{2x+8}-4.3^{x+5}+27=0$.", options: ["A. $-5$", "B. $5$", "C. $\\frac{4}{27}$", "D. $-\\frac{4}{27}$"], correct: 0 },
-        { id: 4, text: "Tìm tập nghiệm $S$ của phương trình $\\log_{6}[x(5-x)]=1$.", options: ["A. $S=\\{1; -6\\}$", "B. $S=\\{-1; 6\\}$", "C. $S=\\{2; 3\\}$", "D. $S=\\{4; 6\\}$"], correct: 2 },
-        { id: 5, text: "Gọi $T$ là tổng tất cả các nghiệm của phương trình $3^{x^{2}} \\cdot 2^{x}=1$. Mệnh đề nào sau đây là đúng?", options: ["A. $T < -\\frac{1}{2}$", "B. $-\\frac{1}{2} < T < 1$", "C. $T = 1$", "D. $T > 1$"], correct: 0 },
-        { id: 7, text: "Nghiệm của phương trình $3^{x-1} = 27$ là:", options: ["A. $x=3$", "B. $x=4$", "C. $x=2$", "D. $x=1$"], correct: 1 },
-        { id: 8, text: "Nghiệm của phương trình $\\log_2(x^2 - 1) = 3$ là:", options: ["A. $x = \\pm 3$", "B. $x = \\pm \\sqrt{7}$", "C. $x = 3$", "D. $x = \\sqrt{7}$"], correct: 0 },
-        { id: 11, text: "Nghiệm của phương trình $9^x - 4\\cdot 3^x + 3 = 0$ là:", options: ["A. $x=0, x=1$", "B. $x=1, x=3$", "C. $x=0, x=-1$", "D. $x=1, x=-3$"], correct: 0 },
-        { id: 15, text: "Nghiệm của phương trình $2^{x} \\cdot 5^{x} = 100$ là:", options: ["A. $x=1$", "B. $x=2$", "C. $x=10$", "D. $x=\\log_{10} 2$"], correct: 1 },
-        { id: 16, text: "Phương trình $\\ln x + \\ln(x+1) = 0$ có bao nhiêu nghiệm?", options: ["A. 0", "B. 1", "C. 2", "D. 3"], correct: 1 },
-        { id: 17, text: "Nghiệm của phương trình $\\log_3(x-2) = 2$ là:", options: ["A. $x=11$", "B. $x=8$", "C. $x=7$", "D. $x=5$"], correct: 0 }
-    ];
-
     function resetGame() {
         currentQuestionIndex = 0; score = 0; canClick = true;
-        
         clearInterval(timerInterval);
         document.getElementById('timer').innerText = "00:00";
         document.getElementById('score').innerText = score;
-        
         document.getElementById('quiz-content').innerHTML = `
             <div class="question-box" id="question-text">Đang tải...</div>
             <div class="options-grid" id="options-container"></div>
         `;
         document.getElementById('next-btn').style.display = 'none';
         document.querySelectorAll('.cover-tile').forEach(t => t.classList.remove('revealed'));
-        
         document.getElementById('playerName').value = "";
         document.getElementById('playerInfoBar').style.display = 'none';
         document.getElementById('loginModal').style.display = 'flex';
-
         loadQuestion();
     }
 
@@ -439,13 +379,11 @@
         if (type === 'correct') {
             osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(1046.5, audioCtx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
             osc.start(); osc.stop(audioCtx.currentTime + 0.5);
         } else {
             osc.type = 'sawtooth'; osc.frequency.setValueAtTime(200, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
             osc.start(); osc.stop(audioCtx.currentTime + 0.3);
         }
     }
@@ -455,8 +393,7 @@
         grid.innerHTML = '';
         for (let i = 0; i < 400; i++) {
             let div = document.createElement('div');
-            div.className = 'cover-tile';
-            div.id = `tile-${i}`;
+            div.className = 'cover-tile'; div.id = `tile-${i}`;
             grid.appendChild(div);
         }
         document.getElementById('total-q').innerText = questions.length;
@@ -470,12 +407,10 @@
         
         if (currentQuestionIndex === questions.length - 1) {
             nextBtn.innerHTML = 'Kết Thúc & Xem Điểm 🏁';
-            nextBtn.style.backgroundColor = '#FFB300'; 
-            nextBtn.style.boxShadow = '0 5px 0 #FF8F00';
+            nextBtn.style.backgroundColor = '#FFB300'; nextBtn.style.boxShadow = '0 5px 0 #FF8F00';
         } else {
             nextBtn.innerHTML = 'Câu Tiếp Theo ➜';
-            nextBtn.style.backgroundColor = 'var(--primary-color)';
-            nextBtn.style.boxShadow = '0 5px 0 #c62828';
+            nextBtn.style.backgroundColor = 'var(--primary-color)'; nextBtn.style.boxShadow = '0 5px 0 #c62828';
         }
 
         document.getElementById('current-q').innerText = currentQuestionIndex + 1;
@@ -483,8 +418,7 @@
         const qText = document.getElementById('question-text');
         const optContainer = document.getElementById('options-container');
         if(qText && optContainer) {
-            qText.innerHTML = qData.text;
-            optContainer.innerHTML = '';
+            qText.innerHTML = qData.text; optContainer.innerHTML = '';
             qData.options.forEach((opt, idx) => {
                 let btn = document.createElement('div');
                 btn.className = 'option-btn';
@@ -511,7 +445,6 @@
         }
         
         if (currentQuestionIndex === questions.length - 1) {
-            // Câu cuối: đợi 1.2s rồi chạy hàm kết thúc
             setTimeout(finishGame, 1200);
         } else {
             document.getElementById('next-btn').style.display = 'block';
@@ -523,14 +456,11 @@
         const totalTiles = 400;
         const count = Math.ceil(totalTiles / questions.length); 
         const actualCount = Math.min(count, unrevealed.length);
-
         if (actualCount <= 0) return;
-
         for (let i = unrevealed.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [unrevealed[i], unrevealed[j]] = [unrevealed[j], unrevealed[i]];
         }
-        
         unrevealed.slice(0, actualCount).forEach((t, i) => setTimeout(() => t.classList.add('revealed'), i * 5));
     }
 
@@ -539,23 +469,29 @@
         if (currentQuestionIndex < questions.length) loadQuestion();
     }
 
-    function getLocalLeaderboard() {
-        const data = localStorage.getItem(LB_KEY);
-        return data ? JSON.parse(data) : [];
+    // --- FIREBASE: LƯU VÀ HIỂN THỊ ĐIỂM ---
+    function saveScoreToFirebase(name, score, timeSeconds) {
+        db.ref('leaderboard').push({
+            name: name,
+            score: score,
+            timeSeconds: timeSeconds,
+            timestamp: Date.now()
+        }).catch(error => console.error("Lỗi khi lưu điểm:", error));
     }
 
-    function saveScore(name, score, timeSeconds) {
-        let lb = getLocalLeaderboard();
-        lb.push({ name, score, timeSeconds });
-        localStorage.setItem(LB_KEY, JSON.stringify(lb));
-
-        if (SCRIPT_URL) {
-            const postData = { name, score, timeSeconds };
-            fetch(SCRIPT_URL, {
-                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(postData)
-            }).catch(e => console.error('Lỗi khi lưu lên Sheet:', e));
-        }
+    function showLeaderboard() {
+        document.getElementById('leaderboardModal').style.display = 'flex';
+        const content = document.getElementById('leaderboardContent');
+        content.innerHTML = "<p style='text-align:center; padding:20px;'>⏳ Đang tải Bảng xếp hạng...</p>";
+        
+        db.ref('leaderboard').once('value').then((snapshot) => {
+            const data = snapshot.val();
+            let lb = [];
+            if (data) lb = Object.values(data);
+            renderLeaderboardHTML(lb, 'leaderboardContent');
+        }).catch(error => {
+            content.innerHTML = "<p style='text-align:center;'>❌ Lỗi kết nối dữ liệu.</p>";
+        });
     }
 
     function renderLeaderboardHTML(lb, containerId) {
@@ -588,29 +524,15 @@
         content.innerHTML = html;
     }
 
-    async function showLeaderboard() {
-        document.getElementById('leaderboardModal').style.display = 'flex';
-        const content = document.getElementById('leaderboardContent');
-        content.innerHTML = "<p style='text-align:center; padding:20px;'>⏳ Đang tải Bảng xếp hạng...</p>";
-        try {
-            const response = await fetch(SCRIPT_URL);
-            const sheetData = await response.json();
-            renderLeaderboardHTML(sheetData, 'leaderboardContent');
-        } catch (error) {
-            setTimeout(() => renderLeaderboardHTML(getLocalLeaderboard(), 'leaderboardContent'), 1000);
-        }
-    }
-
     function closeLeaderboard() { document.getElementById('leaderboardModal').style.display = 'none'; }
 
-    // --- HIỂN THỊ KẾT QUẢ TRỰC TIẾP TRÊN KHUNG TRÁI ---
     function finishGame() {
         finalTimeSeconds = stopTimer(); 
         const maxScore = questions.length * 10;
         const correctAnswers = score / 10;
         const perfect = score === maxScore;
         
-        saveScore(playerName, score, finalTimeSeconds);
+        saveScoreToFirebase(playerName, score, finalTimeSeconds);
         document.getElementById('next-btn').style.display = 'none';
 
         if (perfect) {
@@ -618,7 +540,6 @@
             startConfetti();
         }
 
-        // Nội dung lời chúc và sticker
         let title = perfect ? "XUẤT SẮC! 🎉" : "KẾT THÚC! 🏁";
         let message = perfect 
             ? "Chúc mừng bạn đã mở được toàn bộ bức tranh! 🖼️✨" 
@@ -626,7 +547,6 @@
         let titleColor = perfect ? "var(--correct-color)" : "var(--primary-color)";
         let mainSticker = perfect ? "🏆" : "🎯";
 
-        // Ghi đè thẳng vào vùng câu hỏi bên trái
         const quizContent = document.getElementById('quiz-content');
         quizContent.innerHTML = `
             <div style="text-align: center; animation: popIn 0.5s;">
@@ -638,13 +558,10 @@
                     <p style="font-size: 1.2rem; margin: 5px 0;">✅ Số câu đúng: <b style="color:var(--correct-color)">${correctAnswers}/${questions.length}</b></p>
                     <p style="font-size: 1.2rem; margin: 5px 0;">⭐ Điểm số: <b style="font-size:1.6rem; color:#f39c12;">${score}</b></p>
                     <p style="font-size: 1.2rem; margin: 5px 0;">⏱️ Thời gian: <b>${formatTime(finalTimeSeconds)}</b></p>
-                    
                     <hr style="border: 1px dashed #ccc; margin: 15px 0;">
                     <p id="inlineRankDisplay" style="text-align: center; font-size: 1.3rem; font-weight: 800; color: #d32f2f; margin: 0;">🏅 Đang tính thứ hạng... ⏳</p>
                 </div>
-                
                 <p style="font-size: 1.2rem; font-weight: bold; color: #555;">${message}</p>
-                
                 <div style="margin-top: 15px;">
                     <button class="action-btn" onclick="showLeaderboard()">🏆 Bảng Xếp Hạng</button>
                     <button class="action-btn" onclick="resetGame()">🔄 Chơi Lại Từ Đầu</button>
@@ -652,37 +569,27 @@
             </div>
         `;
 
-        // Tải vị trí xếp hạng ngầm
-        setTimeout(async () => {
-            try {
-                const response = await fetch(SCRIPT_URL);
-                const sheetData = await response.json();
-                
-                sheetData.push({ name: playerName, score: score, timeSeconds: finalTimeSeconds });
-                sheetData.sort((a, b) => {
-                    if (b.score !== a.score) return b.score - a.score;
-                    return a.timeSeconds - b.timeSeconds;
-                });
-                
-                let currentRank = sheetData.findIndex(item => item.name === playerName && item.score === score && item.timeSeconds === finalTimeSeconds) + 1;
-                document.getElementById('inlineRankDisplay').innerHTML = `🏅 Thứ hạng của đội: TOP ${currentRank} 🏅`;
-            } catch (e) {
-                let lb = getLocalLeaderboard();
-                lb.sort((a, b) => {
-                    if (b.score !== a.score) return b.score - a.score;
-                    return a.timeSeconds - b.timeSeconds;
-                });
-                let currentRank = lb.findIndex(item => item.name === playerName && item.score === score && item.timeSeconds === finalTimeSeconds) + 1;
-                document.getElementById('inlineRankDisplay').innerHTML = `🏅 Thứ hạng của đội: TOP ${currentRank} 🏅 (Offline)`;
-            }
-        }, 500);
+        // Lấy thứ hạng trực tiếp từ Firebase sau 1 giây chờ dữ liệu đồng bộ
+        setTimeout(() => {
+            db.ref('leaderboard').once('value').then((snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    let lb = Object.values(data);
+                    lb.sort((a, b) => {
+                        if (b.score !== a.score) return b.score - a.score;
+                        return a.timeSeconds - b.timeSeconds;
+                    });
+                    let currentRank = lb.findIndex(item => item.name === playerName && item.score === score && item.timeSeconds === finalTimeSeconds) + 1;
+                    document.getElementById('inlineRankDisplay').innerHTML = `🏅 Thứ hạng của đội: TOP ${currentRank} 🏅`;
+                }
+            });
+        }, 1000);
     }
 
     function startConfetti() {
         const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#FF9F43'];
         for(let i=0; i<100; i++){
-            let c = document.createElement('div');
-            c.className='confetti';
+            let c = document.createElement('div'); c.className='confetti';
             c.style.left = Math.random()*100+'vw';
             c.style.background = colors[Math.floor(Math.random()*colors.length)];
             c.style.animationDuration = (Math.random()*3+2)+'s';
